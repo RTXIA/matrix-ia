@@ -60,7 +60,7 @@ const RECHARGE_TIME = 3.5 * 60 * 1000;
 const systemPrompts = {
     fr: "Tu es Matrix IA. Tu dois impérativement et exclusivement répondre en français, peu importe la langue utilisée par l'utilisateur.",
     en: "You are Matrix IA. You must strictly and exclusively respond in English, regardless of the language used by the user.",
-    es: "Eres Matrix IA. Debes responder estricta y exclusivement en español, independientemente del idioma que utilice le usuario.",
+    es: "Eres Matrix IA. Debes responder estricta y exclusivamente en español, independientemente del idioma que utilice el usuario.",
     ar: "أنتِ Matrix IA. يجب عليكِ الرد باللغة العربية فقط وبشكل صارم، بغض النظر عن اللغة التي يستخدمها المستخدم."
 };
 
@@ -172,9 +172,11 @@ async function generateBotResponse(userText) {
     const languageConstraint = systemPrompts[selectedLanguage];
 
     try {
-        // Envoi direct sans en-tête Content-Type pour éviter le blocage CORS en ligne et local
         const response = await fetch(targetUrl, {
             method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 contents: [{ 
                     parts: [{ 
@@ -183,7 +185,9 @@ async function generateBotResponse(userText) {
                 }]
             })
         });
+        
         const result = await response.json();
+        
         if (result.candidates && result.candidates[0].content.parts[0].text) {
             let botReply = result.candidates[0].content.parts[0].text;
             botReply = cleanBotText(botReply);
