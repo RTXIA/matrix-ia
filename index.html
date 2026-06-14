@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix IA</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+    <div class="cursor-glow" id="mouse-glow"></div>
+    <canvas id="matrix-canvas"></canvas>
+
+    <section id="home-page" class="page active">
+        <div class="hero-container">
+            <h1 class="glow-text">Bienvenue sur Matrix IA</h1>
+            
+            <button id="start-chat-btn" class="animated-box">
+                <span>Discuter avec Matrix IA</span>
+                <div class="box-glow"></div>
+            </button>
+        </div>
+    </section>
+
+    <section id="chat-page" class="page">
+        <div class="chat-container">
+            <header class="chat-header">
+                <div class="bot-status">
+                    <div class="status-dot"></div>
+                    <h2>Matrix IA Connectée</h2>
+                </div>
+                <div class="header-actions">
+                    <button id="lang-page-btn" class="btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        Langue (<span id="current-lang-txt">FR</span>)
+                    </button>
+                    <button id="clear-btn" class="btn-secondary">Effacer</button>
+                    <button id="back-btn" class="btn-secondary">Retour</button>
+                </div>
+            </header>
+
+            <div id="chat-box" class="chat-box"></div>
+
+            <div id="chat-status-bar" class="chat-status-bar">
+                <div class="status-indicator">
+                    <span class="indicator-dot status-ok"></span>
+                    <span id="status-text" class="status-text">3 messages disponibles</span>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Demande-moi ce que tu veux..." autocomplete="off">
+                <button id="send-btn">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path fill="currentColor" d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="lang-page" class="page">
+        <div class="language-container">
+            <h3>Configuration Linguistique</h3>
+            <p>Sélectionnez la langue exclusive que doit parler Matrix IA.</p>
+            
+            <div class="lang-grid">
+                <div class="lang-box selected" data-lang="fr" data-label="FR">Français</div>
+                <div class="lang-box" data-lang="en" data-label="EN">English</div>
+                <div class="lang-box" data-lang="es" data-label="ES">Español</div>
+                <div class="lang-box" data-lang="ar" data-label="AR">العربية</div>
+            </div>
+
+            <button id="confirm-lang-btn" class="btn-secondary" style="width: 100%; justify-content: center; padding: 14px; background: white; color: black; font-weight: 600; border-radius: 14px;">
+                Confirmer le choix
+            </button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
